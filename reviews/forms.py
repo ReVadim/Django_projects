@@ -15,11 +15,11 @@ class LoginForm(forms.ModelForm):
         username = self.cleaned_data['username']
         password = self.cleaned_data['password']
         if not User.objects.filter(username=username).exists():
-            raise forms.ValidationError(f'User {username} not found')
+            raise forms.ValidationError(f'ользователь {username} не найден')
         user = User.objects.filter(username=username).first()
         if user:
             if not user.check_password(password):
-                raise forms.ValidationError('Wrong password')
+                raise forms.ValidationError('Неверный пароль')
         return self.cleaned_data
 
     class Meta:

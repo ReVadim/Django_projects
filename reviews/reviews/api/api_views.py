@@ -26,7 +26,7 @@ class LoginView(View):
             user = authenticate(username=username, password=password)
             if user:
                 login(request, user)
-                return HttpResponseRedirect('/')
+                return HttpResponseRedirect('/main_page')
         return render(request, 'login.html', {'form': form})
 
 

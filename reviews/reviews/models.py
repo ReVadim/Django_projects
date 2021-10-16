@@ -28,14 +28,14 @@ class Question(models.Model):
 class QuestionChoice(models.Model):
     """ Acceptable answers to the question """
 
-    question = models.ForeignKey(Question, related_name='question-choice', on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, related_name='question_choice', on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=100, default='input value', null=True)
 
 
 class QuestionSurvey(models.Model):
     """ Questions in Survey linking table """
 
-    question = models.ForeignKey(Question, related_name='question-list', on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, related_name='question_list', on_delete=models.CASCADE)
     survey = models.ForeignKey('Survey', related_name='survey', on_delete=models.CASCADE, default=None)
 
 
@@ -51,7 +51,7 @@ class Survey(models.Model):
 
     class Meta:
         verbose_name = 'Questionnaire'
-        verbose_name_plural = 'Questionnaire-list'
+        verbose_name_plural = 'Questionnaire_list'
 
     def __str__(self):
         return self.title

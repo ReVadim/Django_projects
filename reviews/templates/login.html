@@ -1,17 +1,23 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
-{% block content %}
+
+{% block main %}
 
 <div class="row" style="margin-bottom: 300px; margin-top: 180px">
     <div class="col-md-6 offset-md-3">
         <h3 class="text-center">Авторизация</h3>
         <hr>
-        <form action="" method="POST">
+        <form method="post">
             {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
+<!--            <label for="username">Логин: </label>-->
+<!--            <input type="text" value="">-->
+<!--            <label for="password">Пароль: </label>-->
+<!--            <input type="text" value="">-->
             {{ form|crispy }}
             <input type="submit" class="btn btn-success" value="Войти">
         </form>
     </div>
 </div>
 
-{% endblock content %}
+{% endblock main %}
