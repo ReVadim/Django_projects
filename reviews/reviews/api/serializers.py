@@ -73,12 +73,15 @@ class SurveySerializer(serializers.ModelSerializer):
         model = Survey
         fields = '__all__'
 
+    def get(self, request, *args, **kwargs):
+        return self.get_or_create(request)
+
     def create(self, validated_data):
         return Survey.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
         if 'start_time' in validated_data:
-            raise serializers.ValidationError('You cannot make changes')
+            raise serializers.ValidationError({'start_time': 'You cannot make changes'})
         for key, value in validated_data.items():
             setattr(instance, key, value)
         instance.save()

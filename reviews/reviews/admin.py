@@ -1,3 +1,9 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Survey, Question, QuestionSurvey, QuestionChoice
+
+
+admin.site.register(Survey)
+admin.site.register(Question)
+admin.site.register(QuestionChoice)
+admin.site.register(QuestionSurvey)

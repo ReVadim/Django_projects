@@ -1,13 +1,18 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.views.generic import View
 from rest_framework.exceptions import ParseError
+from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.response import Response
-from django.contrib.auth import authenticate, login
+
+from django.contrib.auth import login
 from forms import LoginForm
-from reviews.api.serializers import SurveySerializer
 from reviews.models import Survey
+from django.contrib.auth import authenticate
+from rest_framework.response import Response
+
+
+from .serializers import SurveySerializer
 
 
 class LoginView(View):
@@ -31,10 +36,14 @@ class LoginView(View):
 
 
 class SurveyViewSet(ModelViewSet):
-    """ Create survey viewSet class """
+    """ Survey ViewSet class """
 
+    queryset = Survey.objects.all()
     serializer_class = SurveySerializer
-    http_method_names = ['GET', 'POST', 'PATCH', 'DELETE']
+    http_method_names = ['get', 'post', 'patch', 'delete']
+
+    def get(self, request):
+        return self.queryset
 
     def post(self, request):
         try:
@@ -48,3 +57,19 @@ class SurveyViewSet(ModelViewSet):
             return Response(SurveySerializer(survey).data)
         except Exception as ex:
             raise ParseError(ex)
+
+
+class SurveyView(APIView):
+    get_queryset = Survey.objects.all()
+    serializer_class = SurveySerializer
+
+    def delete(self, request, survey_id):
+        Survey.objects.get(id=survey_id).delete()
+        return HttpResponse(f'<h1>Survey id={survey_id} DELETE</h1>')
+
+    def patch(self, request, survey_id):
+        change_object = Survey.objects.get(id=survey_id)
+        change_object.title = request.data['title']
+        change_object.description = request.data['description']
+        change_object.save()
+        return HttpResponse(change_object)
