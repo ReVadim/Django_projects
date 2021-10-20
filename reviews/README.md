@@ -16,3 +16,18 @@
 - получение списка активных опросов
 - прохождение опроса: опросы можно проходить анонимно, в качестве идентификатора пользователя в API передаётся числовой ID, по которому сохраняются ответы пользователя на вопросы; один пользователь может участвовать в любом количестве опросов
 - получение пройденных пользователем опросов с детализацией по ответам (что выбрано) по ID уникальному пользователя
+
+Данные должны храниться в PostgreSQL    
+
+Для проверки необходимо создать БД в Postgres.    
+Команды для CMD:    
+```
+CREATE DATABASE review_db;    
+CREATE USER review_user WITH PASSWORD password;   
+ALTER USER review_user CREATEDB;    
+ALTER DATABASE review_db OWNER TO review_user;
+```    
+Для загрузки данных в БД используйте команду:
+```manage.py loaddata```
+
+:white_check_mark: Добавлена [schema.yml](https://github.com/ReVadim/junior_admission_test/blob/main/reviews/schema.yml)
