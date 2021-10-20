@@ -24,12 +24,6 @@ class QuestionSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         return Question.objects.create(**validated_data)
 
-    def update(self, instance, validated_data):
-        for key, value in validated_data.items():
-            setattr(instance, key, value)
-        instance.save()
-        return instance
-
 
 class QuestionChoiceSerializer(serializers.ModelSerializer):
     """ Question choice acceptable answers serializer """
@@ -64,7 +58,7 @@ class SurveySerializer(serializers.ModelSerializer):
 
     title = serializers.CharField(max_length=100)
     start_time = serializers.DateTimeField()
-    end_time = serializers.DateTimeField()
+    end_time = serializers.DateTimeField(read_only=True)
     description = serializers.CharField()
     is_active = serializers.BooleanField()
     questions = QuestionSerializer(many=True, read_only=True)
@@ -103,3 +97,7 @@ class AnswerSerializer(serializers.ModelSerializer):
             setattr(instance, key, value)
         instance.save()
         return instance
+
+    class Meta:
+        model = Answer
+        fields = '__all__'
