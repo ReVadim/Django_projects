@@ -7,6 +7,7 @@ from reviews.api.api_views import LoginView, SurveyViewSet, SurveyView
 router = DefaultRouter()
 router.register(r'survey', SurveyViewSet, basename='all_survey')
 router.register('survey/create', SurveyViewSet, basename='create_survey')
+router.register('question/create/', QuestionViewSet, basename='create_question')
 
 
 urlpatterns = [
