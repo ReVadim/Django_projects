@@ -7,7 +7,7 @@ from rest_framework.viewsets import ModelViewSet
 
 from django.contrib.auth import login
 from forms import LoginForm
-from reviews.models import Survey
+from reviews.models import Survey, Question
 from django.contrib.auth import authenticate
 from rest_framework.response import Response
 
@@ -73,3 +73,14 @@ class SurveyView(APIView):
         change_object.description = request.data['description']
         change_object.save()
         return HttpResponse(change_object)
+    
+    
+class QuestionViewSet(ModelViewSet):
+    """ ViewSet for questions """
+
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer
+
+    def get(self, request):
+        return self.queryset
+    
