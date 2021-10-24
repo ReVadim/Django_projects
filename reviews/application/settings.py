@@ -117,7 +117,7 @@ SPECTACULAR_SETTINGS = {
     'SWAGGER_UI_FAVICON_HREF': 'SIDECAR',
     'REDOC_DIST': 'SIDECAR',
     'TITLE': 'Billing Project API',
-    'DESCRIPTION': 'An application for banking transactions. Creating accounts and transferring funds between them',
+    'DESCRIPTION': 'An application for creating user surveys and operations with them',
     'VERSION': '1.0.0',
 }
 
