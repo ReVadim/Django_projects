@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+import uuid
 
 
 class UserAccountManager(BaseUserManager):
@@ -29,6 +30,7 @@ class UserAccountManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+    """ AbstractBaseUser model """
 
     REQUIRED_FIELDS = []
     USERNAME_FIELD = 'email'
@@ -39,6 +41,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     full_name = models.CharField(verbose_name='full name', blank=True, null=True, max_length=200)
     is_staff = models.BooleanField(verbose_name='staff status', default=False)
     is_active = models.BooleanField(verbose_name='active', default=True)
+    is_verified = models.BooleanField(verbose_name='verified', default=False)
+    verification_uuid = models.UUIDField(verbose_name='Unique Verification UUID', default=uuid.uuid4)
 
     def get_short_name(self):
         return self.email
@@ -48,3 +52,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __unicode__(self):
         return self.email
+
+    class Meta:
+        verbose_name = 'Пользователь'
+        verbose_name_plural = 'Пользователи'
