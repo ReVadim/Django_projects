@@ -15,12 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url
-from django.urls import path, include
+from django.urls import path
 
 from publish.views import view_post
+from main.views import home, verify
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^(?P<slug>[a-zA-Z0-9\-]+)', view_post, name='view_post')
+    url(r'^(?P<slug>[a-zA-Z0-9\-]+)', view_post, name='view_post'),
+    url(r'^$', home, name='home'),
+    url(r'^verify/(?P<uuid>[a-z0-9\-]+)/', verify, name='verify'),
+    url(r'^(?P<slug>[a-zA-Z0-9\-]+)', view_post, name='view_post'),
 ]

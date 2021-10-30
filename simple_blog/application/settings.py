@@ -42,6 +42,7 @@ SYSTEM_APPS = [
 PROJECT_APPS = [
     'main',
     'publish',
+    'rest_framework',
 ]
 
 INSTALLED_APPS = SYSTEM_APPS + PROJECT_APPS
@@ -136,3 +137,11 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'main.User'
+
+# Email_settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = access.HOST_USER
+EMAIL_HOST_PASSWORD = access.EMAIL_PASSWORD
+EMAIL_PORT = 587
