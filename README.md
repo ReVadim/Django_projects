@@ -9,7 +9,8 @@
 | Проект | Описание |
 |---: | --- |
 | [_retail_store_](https://github.com/ReVadim/Admission_test_projects/tree/main/retail_store) | API для магазина |
-| [_survey_](https://github.com/ReVadim/Admission_test_projects/tree/main/reviews) |система опроса пользователей|
+| [_reviews_](https://github.com/ReVadim/Admission_test_projects/tree/main/reviews) |система опроса пользователей|
+| [_simple_blog_](https://github.com/ReVadim/Admission_test_projects/tree/main/simple_blog) | простой блог (use Celery) |
 | [_web_billing_](https://github.com/ReVadim/Admission_test_projects/tree/main/web_billing) | банковские транзакции |
 
 ##    
