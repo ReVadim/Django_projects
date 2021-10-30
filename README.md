@@ -4,7 +4,7 @@
 ![Django](https://img.shields.io/badge/-Django-0aad48?style=flat-square&logo=Django)  +
 ![Postgresql](https://img.shields.io/badge/-Postgresql-%232c3e50?style=flat-square&logo=Postgresql)
 
-<img align="right" src="https://github.com/ReVadim/Admission_test_projects/background_image.png" width="300"/>
+<img align="right" src="https://github.com/ReVadim/Admission_test_projects/blob/main/background_image.png" width="300"/>
 
 Тестовые задания по Python / Django    
 
