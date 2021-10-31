@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+
+import djcelery
+
 from settings import access
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -43,6 +46,7 @@ PROJECT_APPS = [
     'main',
     'publish',
     'rest_framework',
+    'djcelery',
 ]
 
 INSTALLED_APPS = SYSTEM_APPS + PROJECT_APPS
@@ -145,3 +149,21 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = access.HOST_USER
 EMAIL_HOST_PASSWORD = access.EMAIL_PASSWORD
 EMAIL_PORT = 587
+
+# redis settings
+REDIS_HOST = 'localhost'
+REDIS_PORT = '6379'
+BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
+
+# celery settings
+CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_TASK_RESULT_EXPIRES = 7*86400
+CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+
+CELERY_SEND_EVENTS = True
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERYBEAT_SCHEDULER = "djcelery.schedulers.DatabaseScheduler"
+
+djcelery.setup_loader()
