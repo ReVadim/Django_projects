@@ -158,7 +158,8 @@ BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
 # celery settings
 CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 CELERY_TASK_RESULT_EXPIRES = 7*86400
-CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+# BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+BROKER_URL = 'django://'
 
 CELERY_SEND_EVENTS = True
 CELERY_ACCEPT_CONTENT = ['application/json']
