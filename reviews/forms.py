@@ -15,7 +15,7 @@ class LoginForm(forms.ModelForm):
         username = self.cleaned_data['username']
         password = self.cleaned_data['password']
         if not User.objects.filter(username=username).exists():
-            raise forms.ValidationError(f'ользователь {username} не найден')
+            raise forms.ValidationError(f'Пользователь {username} не найден')
         user = User.objects.filter(username=username).first()
         if user:
             if not user.check_password(password):
