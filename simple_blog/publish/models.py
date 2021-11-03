@@ -11,6 +11,7 @@ class Post(models.Model):
     title = models.CharField(verbose_name='Title', max_length=200)
     content = models.TextField(verbose_name='Content')
     slug = models.SlugField(verbose_name='Slug')
+    view_count = models.IntegerField("View Count", default=0)
 
     class Meta:
         verbose_name = 'Пост'

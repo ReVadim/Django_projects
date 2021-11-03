@@ -7,6 +7,10 @@ def home(request):
     return render(request, 'home.html')
 
 
+def signin(request):
+    return render(request, 'sign-in.html')
+
+
 def verify(request, uuid):
     try:
         user = User.objects.get(verification_uuid=uuid, is_verified=False)

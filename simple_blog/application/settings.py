@@ -47,6 +47,7 @@ PROJECT_APPS = [
     'publish',
     'rest_framework',
     'djcelery',
+    'crispy_forms',
 ]
 
 INSTALLED_APPS = SYSTEM_APPS + PROJECT_APPS
