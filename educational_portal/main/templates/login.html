@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Authorization{% endblock title %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h3 class="text-center">Authorization</h3>
+            <hr>
+            <div class="col-md-6">
+                <form action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    {{ form }}
+                    <hr>
+                    <input type="submit" class="btn-success btn-block" value="welcome">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
