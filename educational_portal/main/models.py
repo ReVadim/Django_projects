@@ -10,9 +10,7 @@ class UserManager(BaseUserManager):
     use_in_migrations = True
 
     def _create_user(self, email, password, **extra_fields):
-        """
-        Create and save a user with the given username, email, and password.
-        """
+        """ Create and save a user with the given username, email, and password. """
         if not email:
             raise ValueError('The given email must be set')
         email = self.normalize_email(email)
@@ -51,7 +49,9 @@ class User(AbstractUser):
     objects = UserManager()
     username_validator = UnicodeUsernameValidator()
     email = models.EmailField(_('email address'), unique=True)
-    username = models.CharField(blank=True, null=True, max_length=100,
+    username = models.CharField(blank=True,
+                                null=True,
+                                max_length=100,
                                 validators=[username_validator],
                                 error_messages={'unique': _("A user with that username already exists.")}
                                 )
