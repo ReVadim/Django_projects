@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}
+
+    {% block title %}
+        {{ title }}
+    {% endblock title %}
+
+    {% block content %}
+        {% for course in courses %}
+        <li>
+            {{ course }}
+        </li>
+        {% endfor %}
+    {% endblock content %}

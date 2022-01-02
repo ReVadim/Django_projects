@@ -7,6 +7,7 @@ from main.forms import LoginForm
 
 
 class LoginView(views.View):
+    """ rendering registration form """
 
     def get(self, request, *args, **kwargs):
         form = LoginForm(request.POST or None)

@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
 from django import views
+from django.views.generic import ListView
 
+from courses.models import Course
 from .forms import RegistrationForm
 from django.http import HttpResponseRedirect
 
@@ -31,3 +33,16 @@ class RegistrationView(views.View):
         }
         return render(request, 'registration.html', context)
 
+
+def index(request):
+    """ Main page """
+    return render(request, template_name='main/index.html',
+                  context={'title': 'Courses', 'text': 'Welcome to our educational portal'})
+
+
+class CoursesListView(ListView):
+    """ Class Base View """
+    model = Course
+    context_object_name = 'courses'
+    template_name = 'course/course_list.html'
+    extra_context = {'title': 'list of all educational programs'}
