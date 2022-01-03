@@ -43,6 +43,7 @@ SYSTEM_APPS = [
 PROJECT_APPS = [
     'courses',
     'main',
+    'bootstrap4',
 ]
 
 INSTALLED_APPS = SYSTEM_APPS + PROJECT_APPS
@@ -142,3 +143,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'main.User'
+
+LOGOUT_REDIRECT_URL = '/'

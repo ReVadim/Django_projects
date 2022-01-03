@@ -46,3 +46,4 @@ class CoursesListView(ListView):
     context_object_name = 'courses'
     template_name = 'course/course_list.html'
     extra_context = {'title': 'list of all educational programs'}
+
