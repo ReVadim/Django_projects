@@ -15,7 +15,7 @@ class RegistrationView(views.View):
         context = {
             'form': form
         }
-        return render(request, 'registration.html', context)
+        return render(request, 'main/register_user.html', context)
 
     def post(self, request, *args, **kwargs):
         form = RegistrationForm(request.POST or None)
@@ -31,7 +31,7 @@ class RegistrationView(views.View):
         context = {
             'form': form
         }
-        return render(request, 'registration.html', context)
+        return render(request, 'main/register_user.html', context)
 
 
 def index(request):

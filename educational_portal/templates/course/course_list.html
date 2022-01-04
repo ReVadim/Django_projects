@@ -10,7 +10,6 @@
 
     {% block content %}
         {% for course in courses %}
-        <li type="circle">
             <div class="container">
                 <h2>{{ course.name }}</h2><br>
                 <div>
@@ -22,6 +21,5 @@
                 <a href="{{ course.url }}">{{ course.name | lower }}</a>
                 <hr>
             </div>
-        </li>
         {% endfor %}
     {% endblock content %}

@@ -42,7 +42,7 @@ class RegistrationForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['address'].label = 'Your address'
         self.fields['phone'].label = 'Phone number'
-        self.fields['email'].label = 'email'
+        self.fields['email'].label = 'Email'
         self.fields['password'].label = 'Password'
         self.fields['confirm_password'].label = 'Confirm password'
 
@@ -62,6 +62,25 @@ class RegistrationForm(forms.ModelForm):
             raise forms.ValidationError("passwords don't match")
         return self.cleaned_data
 
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data['password'])
+        user.is_active = True
+        user.is_staff = False
+        user.username = self.cleaned_data['email'].split('@')[0]
+        if commit:
+            user.save()
+        return user
+
     class Meta:
         model = User
         fields = ['email', 'password', 'confirm_password', 'address', 'phone']
+
+
+class ChangeUserInfoForm(forms.ModelForm):
+    """ Form for change user information """
+    email = forms.EmailField(required=True, label='Your email')
+
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'first_name', 'last_name', 'user_type')

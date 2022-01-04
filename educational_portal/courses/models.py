@@ -17,10 +17,10 @@ class Course(models.Model):
                           blank=True,
                           null=True)
     image_files = models.FileField(upload_to='pdf_files/%Y-%m-%d/')
-    course_owner = models.OneToOneField(User, verbose_name="owner",
-                                        blank=True,
-                                        null=True,
-                                        on_delete=models.DO_NOTHING)
+    course_owner = models.ForeignKey(User, verbose_name="owner",
+                                     blank=True,
+                                     null=True,
+                                     on_delete=models.DO_NOTHING)
 
     class Meta:
         verbose_name = "Course"

@@ -100,7 +100,7 @@ DATABASES = {
 THUMBNAIL_ALIASES = {
     '': {
         'default': {
-            'size': (96, 96),
+            'size': (196, 196),
             'crop': 'scale',
         },
     },

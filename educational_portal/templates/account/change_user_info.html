@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+
+{% load bootstrap4 %}
+
+{% block title %}Change User information{% endblock title %}
+
+{% block content %}
+<br>
+<h2>Change user information for user {{ user.username }}</h2>
+<form method="post">
+    {% csrf_token %}
+    {% bootstrap_form form layout='horizontal' %}
+    {% buttons submit='Save changes' %}{% endbuttons %}
+</form>
+{% endblock content %}
