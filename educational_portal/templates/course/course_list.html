@@ -1,13 +1,27 @@
 {% extends 'main/base.html' %}
 
+{% load thumbnail %}
+{% load static %}
+{% load bootstrap4 %}
+
     {% block title %}
         {{ title }}
     {% endblock title %}
 
     {% block content %}
         {% for course in courses %}
-        <li>
-            {{ course }}
+        <li type="circle">
+            <div class="container">
+                <h2>{{ course.name }}</h2><br>
+                <div>
+                    <img class="mr-3" src="{% thumbnail course.image_files 'default' %}">
+                </div>
+                <h6>Owner - {{ course.course_owner }}</h6><br>
+                <p>Description:<br>{{ course.description }}</p><br>
+
+                <a href="{{ course.url }}">{{ course.name | lower }}</a>
+                <hr>
+            </div>
         </li>
         {% endfor %}
     {% endblock content %}

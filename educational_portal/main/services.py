@@ -47,3 +47,8 @@ class CoursesListView(ListView):
     template_name = 'course/course_list.html'
     extra_context = {'title': 'list of all educational programs'}
 
+    def display_image(self, course_id):
+        """ displaying images on web page """
+        course = Course.objects.filter(id=course_id)
+        context = {'images': course.image_files}
+        return context
