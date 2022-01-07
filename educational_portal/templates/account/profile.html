@@ -4,16 +4,18 @@
 
 {% block content %}
 <br>
-<h2>Profile for user {{ user.username }}</h2>
+<h3>Profile for user {{ user.username }}</h3>
 {% if user.first_name and user.last_name %}
-    <p>Hello dear {{ user.first_name }} {{ user.last_name }}!</p>
+    <h2>Hello dear {{ user.first_name }} {{ user.last_name }}!</h2>
 {% else %}
     <p>Hello!</p>
 {% endif %}
 <div class="col-md-6 offset-md-3">
-<a href="{% url 'change_profile' %}"><button type="button" class="w-100 btn btn-lg btn-outline-primary">Change profile</button></a>
-<a href="{% url 'change_password' %}"><button type="button" class="w-100 btn btn-lg btn-outline-primary">Change password</button></a>
+<a href="{% url 'change_profile' %}"><button type="button" class="w-40 btn btn-lg btn-outline-primary">Change profile</button></a>
+<a href="{% url 'change_password' %}"><button type="button" class="w-40 btn btn-lg btn-outline-primary">Change password</button></a>
 </div>
-<h3>Your courses</h3>
-
+<br>
+<a href="{% url 'materials' %}"><h3>Your courses</h3></a><br>
+{% block materials %}
+{% endblock materials %}
 {% endblock content %}

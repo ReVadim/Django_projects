@@ -66,3 +66,76 @@ class UserChangePasswordView(SuccessMessageMixin, LoginRequiredMixin, PasswordCh
 @login_required
 def profile(request):
     return render(request, 'account/profile.html')
+
+
+# class CommentsView(LoginRequiredMixin, UpdateView):
+#     """ Class for add or update comments or assessment for course """
+#     model = EducationalProgram
+#     template_name = 'course/add_comments.html'
+#     form_class = EducationalProgramUpdateForm
+#     # form_class = AddCourseCommentsForm
+#     success_url = reverse_lazy('profile')
+#     success_message = 'Changes success'
+#
+#     def setup(self, request, *args, **kwargs):
+#         self.user_id = request.user.pk
+#         print('pk' * 5, self.user_id)
+#         return super().setup(request, *args, **kwargs)
+#
+#     def get_queryset(self):
+#         queryset = EducationalProgram.objects.filter(student_id=self.user_id)
+#         print('!'*15, queryset)
+#         self._id = queryset.filter(course_id=1)
+#         print('*' * 15, self._id)
+#         return self.queryset
+    #
+    # def _setup(self, request, *args, **kwargs):
+    #     query = self.get_queryset()
+    #     q = query.filter(course_id=1).get(student_id=request.user.pk)
+    #     self._id = q.pk
+    #
+    #     return super().setup(request, *args, **kwargs)
+    #
+    # def get_object(self, queryset=None):
+    #     if not queryset:
+    #         queryset = self.get_queryset()
+    #
+    #     return get_object_or_404(queryset, pk=self._id)
+
+class CommentsView(views.View):
+    """ Class for add or update comments or assessment for course """
+    pass
+
+#
+# def edit_comment(request, id):
+#     try:
+#         comment = EducationalProgram.objects.get(id=id)
+#         print('='*20, comment)
+#
+#     except:
+#         return print('Nothing')
+
+# def get(self, request, *args, **kwargs):
+    #     form = EducationalProgramUpdateForm(request.POST or None)
+    #     context = {
+    #         'form': form
+    #     }
+    #     return render(request, 'course/add_comments.html', context)
+    #
+    # def post(self, request, *args, **kwargs):
+    #     form = EducationalProgramUpdateForm(request.POST or None)
+    #     print('/*/*/*/*/*/*', form)
+    #     if form.is_valid():
+    #         new_comment = form.save(commit=False)
+    #         new_comment.assessment = form.cleaned_data['assessment']
+    #         new_comment.comment = form.cleaned_data['comment']
+    #         print('/*/*/*/*/*/*', new_comment)
+    #         new_comment.save()
+    #
+    #         return HttpResponseRedirect('/')
+    #
+    #     context = {
+    #         'form': form
+    #     }
+    #     return render(request, 'course/add_comments.html', context)
+

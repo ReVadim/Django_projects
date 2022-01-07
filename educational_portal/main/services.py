@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django import views
 from django.views.generic import ListView
 
-from courses.models import Course
+from courses.models import Course, EducationalProgram
 from .forms import RegistrationForm
 from django.http import HttpResponseRedirect
 
@@ -52,3 +53,17 @@ class CoursesListView(ListView):
         course = Course.objects.filter(id=course_id)
         context = {'images': course.image_files}
         return context
+
+
+class MaterialsView(LoginRequiredMixin, views.View):
+    """ Class for display of all courses and work materials """
+    model = EducationalProgram
+    context_object_name = 'contents'
+    template_name = 'account/materials.html'
+
+    def get(self, request, *args, **kwargs):
+
+        context = {
+            'materials': EducationalProgram.objects.filter(student_id=self.request.user)
+        }
+        return render(request, 'account/materials.html', context)

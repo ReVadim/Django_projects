@@ -16,9 +16,11 @@
                     <img class="mr-3" src="{% thumbnail course.image_files 'default' %}">
                 </div>
                 <h6>Owner - {{ course.course_owner }}</h6><br>
-
-                    <p>Materials: {{ course.material.name }}</p>
-
+                <p>Contents:</p>
+                {% for mat in course.material.all %}
+                <p>{{ mat.name }} - {{ mat.description }}"</p>
+                {% endfor %}
+                <br>
                 <p>Description:<br>{{ course.description }}</p><br>
 
                 <a href="{{ course.url }}">{{ course.name | lower }}</a>
