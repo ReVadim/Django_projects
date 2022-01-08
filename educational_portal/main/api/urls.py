@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.urls import path
 from main.services import RegistrationView, MaterialsView
-from main.views import LoginView, UserChangePasswordView, ChangeUserInfoView, profile, CommentsView
+from main.views import LoginView, UserChangePasswordView, ChangeUserInfoView, profile
 from .. import services
 from django.contrib.auth.views import LogoutView
 from django.conf.urls.static import static
@@ -16,7 +16,6 @@ urlpatterns = [
     path('accounts/profile/change/', ChangeUserInfoView.as_view(), name='change_profile'),
     path('accounts/profile/', profile, name='profile'),
     path('accounts/profile/materials/', MaterialsView.as_view(), name='materials'),
-    path('accounts/profile/materials/add/comments/', CommentsView.as_view(), name='change_assessment'),
     path('courses/all/', services.CoursesListView.as_view(), name='course_list')
 ]
 

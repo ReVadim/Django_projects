@@ -46,6 +46,7 @@ PROJECT_APPS = [
     'bootstrap4',
     'django_cleanup',
     'easy_thumbnails',
+    'rest_framework',
 ]
 
 INSTALLED_APPS = SYSTEM_APPS + PROJECT_APPS

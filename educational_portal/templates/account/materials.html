@@ -1,6 +1,7 @@
 {% extends 'account/profile.html' %}
 
 {% load bootstrap4 %}
+
 {% load tag_filters %}
 
     {% block title %}
@@ -17,10 +18,6 @@
                     {% for mat in program.course.material.all %}
                         <p>{{ mat.name }}</p>
                     {% endfor %}
-                <h4>assessment - <strong>{{ program.assessment }}</strong></h4>
-                <a href="{% url 'change_assessment' %}"><button type="button" class="w-40 btn btn-lg btn-outline-primary">Change assessment</button></a>
-                <p>Comments:<br>{{ program.comment }}</p><br>
-
                 <hr>
             </div>
         {% endfor %}

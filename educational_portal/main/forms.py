@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
 
-from courses.models import EducationalProgram
+from courses.models import CourseComment
 
 User = get_user_model()
 
@@ -87,42 +87,29 @@ class ChangeUserInfoForm(forms.ModelForm):
         fields = ('username', 'email', 'first_name', 'last_name', 'user_type')
 
 
-# class AddCourseCommentsForm(forms.ModelForm):
-#     """ Form for add comments and assessment for course """
-#     class Meta:
-#         model = EducationalProgram
-#         fields = ['assessment', 'comment']
+class CourseAddCommentForm(forms.ModelForm):
+    """ Form for add comments and assessment for course """
 
+    comment = forms.CharField(required=False, label='add comment')
 
-# class EducationalProgramUpdateForm(forms.ModelForm):
-#     """ Form for add or update comments or assessment for course """
-#
-#     assessment = forms.CharField(required=False)
-#     comment = forms.CharField(required=False)
-#
-#     class Meta:
-#         model = EducationalProgram
-#         fields = ['assessment', 'comment']
-#
-#     def __init__(self, *args, **kwargs):
-#         super().__init__(*args, **kwargs)
-#         self.fields['assessment'].label = 'assessment'
-#         self.fields['comment'].label = 'comment'
-#
-#     def clean(self):
-#
-#         self.assessment = self.cleaned_data['assessment']
-#         self.comment = self.cleaned_data['comment']
-#         if int(self.assessment) < 0 or int(self.assessment) > 5:
-#             raise forms.ValidationError('Wrong assessment')
-#         print('cleaned_data             ', self.cleaned_data)
-#         return self.cleaned_data
-#
-#     def save(self, commit=True):
-#         program = super().save(commit=False)
-#         program.assessment = self.assessment
-#         program.comment = self.comment
-#         print('program         ', program)
-#         if commit:
-#             program.save()
-#         return program
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['comment'].label = 'comment'
+
+    def clean_comment(self):
+        comment = self.cleaned_data['comment']
+
+        if not comment:
+            raise forms.ValidationError("you can't leave an empty comment")
+        return comment
+
+    def save(self, commit=True):
+        comment = super().save(commit=False)
+        if commit:
+            comment.save()
+        return comment
+
+    class Meta:
+        model = CourseComment
+        fields = ['comment']
+
