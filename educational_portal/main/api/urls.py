@@ -10,7 +10,7 @@ router.register('course/all', CoursesViewSet, basename='courses')
 router.register('materials/all', MaterialViewSet, basename='materials')
 router.register('programs/all', ProgramViewSet, basename='programs')
 router.register('course/comments/all', CourseCommentViewSet, basename='comments')
-router.register('course/assessments/all', CourseAssessmentViewSet, basename='assessments')
+router.register('course/assessments/all', CourseAssessmentViewSet, basename='course_assessment')
 
 
 urlpatterns = [

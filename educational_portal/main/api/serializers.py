@@ -34,14 +34,19 @@ class CourseSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class BaseSerializer(serializers.ModelSerializer):
-    """ Base serializer for user and course """
+class BaseUserSerializer(serializers.ModelSerializer):
+    """ Base serializer for user """
 
     user = UserSerializer()
+
+
+class BaseCourseSerializer(serializers.ModelSerializer):
+    """ Base serializer for course """
+
     course = CourseSerializer()
 
 
-class ProgramSerializer(BaseSerializer):
+class ProgramSerializer(BaseCourseSerializer):
     """ serializer class for all educational programs """
 
     student = UserSerializer(read_only=True)
@@ -51,7 +56,7 @@ class ProgramSerializer(BaseSerializer):
         fields = '__all__'
 
 
-class CommentSerializer(BaseSerializer):
+class CommentSerializer(BaseUserSerializer, BaseCourseSerializer):
     """ serializer class for all course comments """
 
     class Meta:
@@ -59,7 +64,7 @@ class CommentSerializer(BaseSerializer):
         fields = '__all__'
 
 
-class CourseAssessmentSerializer(BaseSerializer):
+class CourseAssessmentSerializer(BaseUserSerializer, BaseCourseSerializer):
     """ serializer class for all course assessments """
 
     class Meta:
