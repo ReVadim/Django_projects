@@ -1,9 +1,10 @@
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
-from courses.models import Course, Materials, EducationalProgram
+from courses.models import Course, Materials, EducationalProgram, CourseComment, CourseAssessment
 from .permissions import IsUser
-from .serializers import CourseSerializer, MaterialSerializer, ProgramSerializer
+from .serializers import CourseSerializer, MaterialSerializer, ProgramSerializer, CommentSerializer,\
+    CourseAssessmentSerializer
 
 
 class CoursesViewSet(ModelViewSet):
@@ -34,3 +35,17 @@ class ProgramViewSet(ModelViewSet):
     serializer_class = ProgramSerializer
     queryset = EducationalProgram.objects.all()
     permission_classes = [IsUser]
+
+
+class CourseCommentViewSet(ModelViewSet):
+    """ Comments for courses """
+
+    serializer_class = CommentSerializer
+    queryset = CourseComment.objects.all()
+
+
+class CourseAssessmentViewSet(ModelViewSet):
+    """ Course Assessments """
+
+    serializer_class = CourseAssessmentSerializer
+    queryset = CourseAssessment.objects.all()

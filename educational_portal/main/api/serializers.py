@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from courses.models import Course, Materials, EducationalProgram
+from courses.models import Course, Materials, EducationalProgram, CourseComment, CourseAssessment
 from ..models import User
 
 
@@ -34,12 +34,34 @@ class CourseSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ProgramSerializer(serializers.ModelSerializer):
+class BaseSerializer(serializers.ModelSerializer):
+    """ Base serializer for user and course """
+
+    user = UserSerializer()
+    course = CourseSerializer()
+
+
+class ProgramSerializer(BaseSerializer):
     """ serializer class for all educational programs """
 
-    student = UserSerializer()
-    course = CourseSerializer()
+    student = UserSerializer(read_only=True)
 
     class Meta:
         model = EducationalProgram
         fields = '__all__'
+
+
+class CommentSerializer(BaseSerializer):
+    """ serializer class for all course comments """
+
+    class Meta:
+        model = CourseComment
+        fields = '__all__'
+
+
+class CourseAssessmentSerializer(BaseSerializer):
+    """ serializer class for all course assessments """
+
+    class Meta:
+        model = CourseAssessment
+        fields = ['course', 'assessment']
