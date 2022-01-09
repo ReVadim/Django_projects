@@ -1,6 +1,6 @@
 from django.core.validators import MaxValueValidator
 from django.db import models
-
+from django.core.validators import FileExtensionValidator
 from main.models import User
 
 
@@ -18,7 +18,9 @@ class Course(models.Model):
                           max_length=255,
                           blank=True,
                           null=True)
-    image_files = models.FileField(upload_to='pdf_files/%Y-%m-%d/')
+    image_files = models.ImageField(upload_to='pdf_files/%Y-%m-%d/',
+                                    validators=[FileExtensionValidator(allowed_extensions=['jpg'])],
+                                    )
     course_owner = models.ForeignKey(User, verbose_name="owner",
                                      blank=True,
                                      null=True,
