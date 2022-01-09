@@ -15,4 +15,4 @@
 Есть возможность оценивать курс и оставить комментарии.    
 Админ может создавать и добавлять материалы и курсам.    
 <hr>    
-:white_check_mark: [Printscreen](https://github.com/ReVadim/Admission_test_projects/tree/main/educational_portal/printscreen)    
+:white_check_mark: ![Printscreen](https://github.com/ReVadim/Admission_test_projects/tree/main/educational_portal/printscreen)    
