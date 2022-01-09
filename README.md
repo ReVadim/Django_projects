@@ -10,10 +10,12 @@
 
 | Проект | Описание |
 |---: | --- |
+| [_educational_portal_](https://github.com/ReVadim/Admission_test_projects/tree/main/educational_portal) | API для учебных курсов |
 | [_retail_store_](https://github.com/ReVadim/Admission_test_projects/tree/main/retail_store) | API для магазина |
 | [_reviews_](https://github.com/ReVadim/Admission_test_projects/tree/main/reviews) |система опроса пользователей|
 | [_simple_blog_](https://github.com/ReVadim/Admission_test_projects/tree/main/simple_blog) | простой блог (use Celery) |
 | [_web_billing_](https://github.com/ReVadim/Admission_test_projects/tree/main/web_billing) | банковские транзакции |
+| [_weather_app_](https://github.com/ReVadim/API_projects/tree/main/WeatherApp) | API ресурс OpenWeatherMap |
 
 ##    
 
