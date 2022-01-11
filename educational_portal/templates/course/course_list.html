@@ -23,6 +23,10 @@
                 <br>
                 <p>Description:<br>{{ course.description }}</p><br>
 
+                    {% block comments %}
+                    <a class="btn btn-sm btn-primary" href="{% url 'all_comments' course.pk %}" role="button">comments</a>
+                    {% endblock comments %}
+
                 <a href="{{ course.url }}">{{ course.name | lower }}</a><br><br>
 
                 <hr>
