@@ -18,17 +18,15 @@
                 <h6>Owner - {{ course.course_owner }}</h6><br>
                 <p>Contents:</p>
                 {% for mat in course.material.all %}
-                <p>{{ mat.name }} - {{ mat.description }}"</p>
+                    <p>{{ mat.name }} - {{ mat.description }}"</p>
                 {% endfor %}
                 <br>
                 <p>Description:<br>{{ course.description }}</p><br>
-
-                    {% block comments %}
+                <div>
                     <a class="btn btn-sm btn-primary" href="{% url 'all_comments' course.pk %}" role="button">comments</a>
-                    {% endblock comments %}
 
-                <a href="{{ course.url }}">{{ course.name | lower }}</a><br><br>
-
+                    <a href="{{ course.url }}">{{ course.name | lower }}</a><br><br>
+                </div>
                 <hr>
             </div>
         {% endfor %}

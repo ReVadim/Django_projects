@@ -57,16 +57,19 @@ def add_comment(request, username, course_pk):
         comment.course_id = course_pk
         comment.user = request.user
         comment.save()
-    return redirect('new_comment', user=username, course_id=course_pk)
+    return redirect(request, 'course/new_comment', user=username, course_id=course_pk)
 
 
 def show_comment(request, course_pk):
     """ Show all comments about course """
 
     comments = CourseComment.objects.filter(course_id=course_pk)
-    print('!'*30, comments)
+    course_name = Course.objects.get(pk=course_pk)
 
-    return render(request, 'course/comments.html', {'comments': comments})
+    return render(request, 'course/comments.html', {'comments': comments,
+                                                    'course_name': course_name,
+                                                    'course_pk': course_pk}
+                  )
 
 
 class CourseAssessmentViewSet(ModelViewSet):

@@ -17,5 +17,5 @@ router.register('course/assessments/all', CourseAssessmentViewSet, basename='cou
 urlpatterns = [
     path('api/v1/', include(router.urls)),
     path('course/comments/<int:course_pk>/', show_comment, name='all_comments'),
-    path('<str:username>/<int:course_pk>/comment/new/', new_comment, name='new_comment')
+    path('comment/new/', add_comment, name='new_comment')
 ]

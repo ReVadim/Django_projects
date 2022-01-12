@@ -1,10 +1,38 @@
-{% extends 'course/course_list.html' %}
+{% extends 'main/base.html' %}
 
-{% block comments %}
+{% load thumbnail %}
+{% load static %}
+{% load bootstrap4 %}
+
+    {% block title %}
+        Comments for course - {{ course_name }}
+    {% endblock title %}
+{% block content %}
+
+<h3>Comments:</h3>
 {% if comments %}
     {% for comment in comments %}
-        <p>{{ comment.user.username }}: {{ comment.comment }} | add {{ comment.created_at }}</p>
-    {%  endfor %}
-
-    {% endif %}
-{% endblock comments %}
+        <div>
+            <p>{{ comment.user.username }}: {{ comment.comment }} | add {{ comment.created_at }}</p>
+            <div>
+                {% if user.is_authenticated %}
+                    <a class="nav-link" href="#">add comment</a>
+                    <a class="nav-link" href="#">update</a>
+                    <a class="nav-link" href="#">delete</a>
+                {%  endif %}
+                {% if not user.is_authenticated %}
+                    <a class="nav-link" href="{% url 'registration' %}">add comment</a>
+                {%  endif %}
+                <hr>
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    {% if not user.is_authenticated %}
+        <a class="nav-link" href="{% url 'registration' %}">add comment</a>
+    {%  endif %}
+<a class="nav-link" href="{% url 'new_comment' course_pk %}">add comment</a>
+{% endif %}
+{% block add_comment %}
+{% endblock add_comment %}
+{% endblock content %}
