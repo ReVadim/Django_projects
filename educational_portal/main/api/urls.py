@@ -3,7 +3,7 @@ from rest_framework.routers import DefaultRouter
 
 from courses.views import new_comment
 from main.api.api_views import CoursesViewSet, MaterialViewSet, ProgramViewSet, CourseCommentViewSet, \
-    CourseAssessmentViewSet, add_comment, show_comment
+    CourseAssessmentViewSet, add_comment, show_comment, delete_comment
 
 
 router = DefaultRouter()
@@ -17,5 +17,6 @@ router.register('course/assessments/all', CourseAssessmentViewSet, basename='cou
 urlpatterns = [
     path('api/v1/', include(router.urls)),
     path('course/comments/<int:course_pk>/', show_comment, name='all_comments'),
-    path('comment/new/', add_comment, name='new_comment')
+    path('comment/new/', add_comment, name='new_comment'),
+    path('comment/delete/<int:comment_pk>', delete_comment, name='del_comment'),
 ]
