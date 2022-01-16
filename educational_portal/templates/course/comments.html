@@ -9,30 +9,26 @@
     {% endblock title %}
 {% block content %}
 
-<h3>Comments:</h3>
-{% if comments %}
-    {% for comment in comments %}
-        <div>
-            <p>{{ comment.user.username }}: {{ comment.comment }} | add {{ comment.created_at }}</p>
+<h4>Comments for course - {{ course_name }}:</h4>
+    {% if comments %}
+        {% for comment in comments %}
             <div>
-                {% if user.is_authenticated %}
-                    <a class="nav-link" href="#">add comment</a>
-                    <a class="nav-link" href="#">update</a>
-                    <a class="nav-link" href="#">delete</a>
-                {%  endif %}
-                {% if not user.is_authenticated %}
-                    <a class="nav-link" href="{% url 'registration' %}">add comment</a>
-                {%  endif %}
-                <hr>
+                <p align="left">Author: {{ comment.user.username }}<br>
+                Comment: {{ comment.comment }}<br>
+                add: {{ comment.created_at }}</p><br><br>
+                <div>
+                    {% if user.is_authenticated and user.username == comment.user.username%}
+                        <a href="#">update</a>
+                        <a href="{% url 'del_comment' comment.pk %}">delete</a>
+                    {%  endif %}
+                </div>
             </div>
-        </div>
-    {% endfor %}
-{% else %}
-    {% if not user.is_authenticated %}
-        <a class="nav-link" href="{% url 'registration' %}">add comment</a>
-    {%  endif %}
-<a class="nav-link" href="{% url 'new_comment' course_pk %}">add comment</a>
-{% endif %}
+        {% endfor %}
+    {% endif %}
+<hr>
+<a href="{{ 'course/comments/all' }}">add comment</a>
+
+
 {% block add_comment %}
 {% endblock add_comment %}
 {% endblock content %}

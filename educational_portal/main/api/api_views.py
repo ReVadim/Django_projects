@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from django.urls import NoReverseMatch
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
@@ -48,8 +49,7 @@ class CourseCommentViewSet(ModelViewSet):
     queryset = CourseComment.objects.all()
 
 
-@login_required()
-def add_comment(request, username, course_pk):
+def add_comment(request, course_pk):
 
     form = CourseAddCommentForm(request.POST or None)
     if form.is_valid():
@@ -57,19 +57,28 @@ def add_comment(request, username, course_pk):
         comment.course_id = course_pk
         comment.user = request.user
         comment.save()
-    return redirect(request, 'course/new_comment', user=username, course_id=course_pk)
+    return redirect(request, 'course/new_comment.html', course_pk)
+
+
+@login_required()
+def delete_comment(request, comment_pk):
+    """ delete comment """
+
+    comment = CourseComment.objects.get(pk=comment_pk)
+    course_pk = comment.course_id
+    comment.delete()
+    return show_comment(request, course_pk)
 
 
 def show_comment(request, course_pk):
     """ Show all comments about course """
-
-    comments = CourseComment.objects.filter(course_id=course_pk)
-    course_name = Course.objects.get(pk=course_pk)
-
-    return render(request, 'course/comments.html', {'comments': comments,
-                                                    'course_name': course_name,
-                                                    'course_pk': course_pk}
-                  )
+    try:
+        comments = CourseComment.objects.filter(course_id=course_pk)
+        course_name = Course.objects.get(pk=course_pk)
+        context = {'comments': comments, 'course_name': course_name, 'course_pk': course_pk}
+        return render(request, 'course/comments.html', context)
+    except NoReverseMatch:
+        return render(request, 'main/base.html')
 
 
 class CourseAssessmentViewSet(ModelViewSet):
