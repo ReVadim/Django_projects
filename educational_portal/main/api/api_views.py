@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.urls import NoReverseMatch
-from rest_framework.generics import ListAPIView
+from django.http import HttpResponseRedirect
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
@@ -57,7 +57,7 @@ def add_comment(request, course_pk):
         comment.course_id = course_pk
         comment.user = request.user
         comment.save()
-    return redirect(request, 'course/new_comment.html', course_pk)
+    return render(request, 'new_comment')
 
 
 @login_required()

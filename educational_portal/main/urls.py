@@ -1,5 +1,7 @@
 from django.conf import settings
 from django.urls import path
+
+from main.api.api_views import add_comment
 from main.services import RegistrationView, MaterialsView
 from main.views import LoginView, UserChangePasswordView, ChangeUserInfoView, profile
 from main import services
@@ -16,7 +18,7 @@ urlpatterns = [
     path('accounts/profile/change/', ChangeUserInfoView.as_view(), name='change_profile'),
     path('accounts/profile/', profile, name='profile'),
     path('accounts/profile/materials/', MaterialsView.as_view(), name='materials'),
-    path('courses/all/', services.CoursesListView.as_view(), name='course_list')
+    path('courses/all/', services.CoursesListView.as_view(), name='course_list'),
 ]
 
 if settings.DEBUG:

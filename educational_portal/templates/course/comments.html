@@ -1,34 +1,28 @@
 {% extends 'main/base.html' %}
 
-{% load thumbnail %}
-{% load static %}
-{% load bootstrap4 %}
-
     {% block title %}
-        Comments for course - {{ course_name }}
+        {{ course_name }} comments
     {% endblock title %}
+
 {% block content %}
+    <h4>Comments for course - {{ course_name }}:</h4>
 
-<h4>Comments for course - {{ course_name }}:</h4>
-    {% if comments %}
-        {% for comment in comments %}
-            <div>
-                <p align="left">Author: {{ comment.user.username }}<br>
-                Comment: {{ comment.comment }}<br>
-                add: {{ comment.created_at }}</p><br><br>
+        {% if comments %}
+            {% for comment in comments %}
                 <div>
-                    {% if user.is_authenticated and user.username == comment.user.username%}
-                        <a href="#">update</a>
-                        <a href="{% url 'del_comment' comment.pk %}">delete</a>
-                    {%  endif %}
+                    <p align="left">Author: {{ comment.user.username }}<br>
+                    Comment: {{ comment.comment }}<br>
+                    add: {{ comment.created_at }}</p><br><br>
+                    <div>
+                        {% if user.is_authenticated and user.username == comment.user.username%}
+                            <a href="#">update</a>
+                            <a href="{% url 'del_comment' comment.pk %}">delete</a>
+                        {% endif %}
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
-    {% endif %}
-<hr>
-<a href="{{ 'course/comments/all' }}">add comment</a>
-
-
-{% block add_comment %}
-{% endblock add_comment %}
+            {% endfor %}
+        {% else %}
+            <h4>Add first comment!</h4>
+        {% endif %}
+         <a href="#">add comment</a>
 {% endblock content %}
