@@ -15,7 +15,7 @@
 | [_reviews_](https://github.com/ReVadim/Admission_test_projects/tree/main/reviews) |система опроса пользователей|
 | [_simple_blog_](https://github.com/ReVadim/Admission_test_projects/tree/main/simple_blog) | простой блог (use Celery) |
 | [_web_billing_](https://github.com/ReVadim/Admission_test_projects/tree/main/web_billing) | банковские транзакции |
-| [_weather_app_](https://github.com/ReVadim/API_projects/tree/main/WeatherApp) | API ресурс OpenWeatherMap |
+| [_weather_app_](https://meteostation-v1.herokuapp.com) | Heroku Deploy with OpenWeatherMap API |
 
 ##    
 
@@ -24,3 +24,4 @@
 ![](https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=revadim&theme=nord_bright) <br>
 ![](https://github-profile-summary-cards.vercel.app/api/cards/stats?username=revadim&theme=nord_bright) 
 ![](https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=revadim&theme=nord_bright)
+<img width="400px" align="left" src="https://github-readme-stats.vercel.app/api/top-langs/?username=ReVadim&hide=css&layout=compact"/>
