@@ -25,4 +25,5 @@
 ![](https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=revadim&theme=nord_bright) <br>
 ![](https://github-profile-summary-cards.vercel.app/api/cards/stats?username=revadim&theme=nord_bright) 
 ![](https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=revadim&theme=nord_bright)
+![](https://komarev.com/ghpvc/?username=revadim)
 <img width="400px" align="left" src="https://github-readme-stats.vercel.app/api/top-langs/?username=ReVadim&hide=css&layout=compact"/>
