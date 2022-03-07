@@ -53,7 +53,7 @@
 ![](https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=revadim&theme=nord_bright)
 <img width="400px" align="left" src="https://github-readme-stats.vercel.app/api/top-langs/?username=ReVadim&hide=css&layout=compact"/>
 <br>
-
+![](https://komarev.com/ghpvc/?username=revadim)
 
 ### Studying now:
 
