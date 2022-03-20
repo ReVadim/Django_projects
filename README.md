@@ -40,9 +40,10 @@
 | [_games_](https://github.com/ReVadim/Games) | Terminal, TKinter and PyGame |
 | [_retail_store_](https://github.com/ReVadim/Admission_test_projects/tree/main/retail_store) | API для магазина |
 | [_reviews_](https://github.com/ReVadim/Admission_test_projects/tree/main/reviews) |система опроса пользователей|
-| [_simple_blog_](https://github.com/ReVadim/Admission_test_projects/tree/main/simple_blog) | простой блог (use Celery) |
+| [_simple_blog_](https://github.com/ReVadim/Admission_test_projects/tree/main/simple_blog) | простой блог with Celery |
 | [_web_billing_](https://github.com/ReVadim/Admission_test_projects/tree/main/web_billing) | банковские транзакции |
 | [_weather_app_](https://meteostation-v1.herokuapp.com) | Heroku Deploy with OpenWeatherMap API |
+| [_telegram_bot_](https://github.com/ReVadim/bots) | Simple Telegram Bot with Django |
 
 ##    
 
