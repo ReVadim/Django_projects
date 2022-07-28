@@ -7,6 +7,7 @@ from main.forms import CourseAddCommentForm
 
 @login_required()
 def new_comment(request, username, course_id):
+    """ Adding a comment to the course. Available only for registered users """
 
     course = get_object_or_404(Course.objects.select_related('name'), username=username, id=course_id)
     comment = course.comment.all()

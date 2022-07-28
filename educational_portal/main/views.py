@@ -65,4 +65,5 @@ class UserChangePasswordView(SuccessMessageMixin, LoginRequiredMixin, PasswordCh
 
 @login_required
 def profile(request):
+    """ Returning the profile page """
     return render(request, 'account/profile.html')

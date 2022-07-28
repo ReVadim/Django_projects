@@ -10,6 +10,7 @@ from django.http import HttpResponseRedirect
 
 
 class RegistrationView(views.View):
+    """ A new user registering class """
 
     def get(self, request, *args, **kwargs):
         form = RegistrationForm(request.POST or None)
