@@ -1,4 +1,4 @@
-## Test_projects
+## Django_projects
 
 ### Include:
 <table>
@@ -37,7 +37,7 @@
 | Проект | Описание |
 |---: | --- |
 | [_educational_portal_](https://github.com/ReVadim/Admission_test_projects/tree/main/educational_portal) | API для библиотеки учебных курсов |
-| [_games_](https://github.com/ReVadim/Games) | Terminal, TKinter and PyGame |
+| [_bboard_](https://github.com/ReVadim/Admission_test_projects/tree/main/marketplace) | Доска объявлений |
 | [_retail_store_](https://github.com/ReVadim/Admission_test_projects/tree/main/retail_store) | API для магазина |
 | [_reviews_](https://github.com/ReVadim/Admission_test_projects/tree/main/reviews) |система опроса пользователей|
 | [_simple_blog_](https://github.com/ReVadim/Admission_test_projects/tree/main/simple_blog) | простой блог with Celery |
