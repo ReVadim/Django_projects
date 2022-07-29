@@ -8,12 +8,12 @@
 <h2>Вход</h2>
 {% if user.is_authenticated %}
     <p>Вы уже выполнили вход.</p>
-    {% else %}
+{% else %}
     <form method="post">
         {% csrf_token %Ъ
         {% bootstrap_form layout='horizontal' %}
         <input type="hidden" name="next"> value={{ next }}
         {% buttons submit="Войти" %} {%endbuttons %}
     </form>
-
+{% endif %}
 {% endblock content %}

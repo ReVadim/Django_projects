@@ -1,5 +1,5 @@
 header h1 {
-    background: url("https://avatars.mds.yandex.net/i?id=78484f36ccf2aca834b9ed8f63b0e1f2-2573615-images-thumbs&n=13") left / auto 100% no-repeat, url("https://avatars.mds.yandex.net/i?id=78484f36ccf2aca834b9ed8f63b0e1f2-2573615-images-thumbs&n=13") right / auto 100% no-repeat;
+    background: url("../img/bg.jpg") left / auto 100% no-repeat, url("../img/bg.jpg") right / auto 100% no-repeat;
 }
 .root {
     font-size: larger;
