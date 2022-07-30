@@ -17,7 +17,7 @@
             </header>
             <div class="row">
                 <ul class="col nav justify-content-end border">
-                    <li class="nav-item"><a class="nav-link" href="#">Регистрация</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'src.main:register' %}">Регистрация</a></li>
                     {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown"
@@ -25,7 +25,7 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="{% url 'src.main:profile' %}">Мои объявления</a>
                             <a class="dropdown-item" href="{% url 'src.main:profile_change' %}">Изменить личные данные</a>
-                            <a class="dropdown-item" href="{% url 'src.main:password_change %}">Изменить пароль</a>
+                            <a class="dropdown-item" href="{% url 'src.main:password_change' %}">Изменить пароль</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{% url 'src.main:logout' %}">Выйти</a>
                             <div class="dropdown-divider"></div>

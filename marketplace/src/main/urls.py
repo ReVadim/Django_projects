@@ -5,12 +5,15 @@ from .views import (
     other_page,
     MarketplaceLoginView,
     profile, MarketplaceLogoutView,
-    ChangeUserInfoView, MarketplacePasswordChangeView
+    RegisterDoneView, RegisterUserView,
+    ChangeUserInfoView, MarketplacePasswordChangeView,
 )
 
 
 app_name = 'src.main'
 urlpatterns = [
+    path('accounts/register/done/', RegisterDoneView.as_view(), name='register_done'),
+    path('accounts/register/', RegisterUserView.as_view(), name='register'),
     path('accounts/login/', MarketplaceLoginView.as_view(), name='login'),
     path('accounts/logout/', MarketplaceLogoutView.as_view(), name='logout'),
     path('accounts/password/change', MarketplacePasswordChangeView.as_view(), name='password_change'),

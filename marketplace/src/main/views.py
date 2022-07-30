@@ -2,7 +2,8 @@ from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from django.views.generic.edit import UpdateView
+from django.views.generic import TemplateView
+from django.views.generic.edit import UpdateView, CreateView
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404
 import django.template
@@ -11,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 
 from src.main.forms import ChangeUserInfoForm
 from src.main.models import AdvUser
+from .forms import RegisterUserForm
 
 
 def index(request):
@@ -73,3 +75,18 @@ class MarketplacePasswordChangeView(SuccessMessageMixin, LoginRequiredMixin, Pas
     template_name = 'main/password_change'
     success_url = reverse_lazy('src.main:profile')
     success_message = 'Пароль успешно изменен'
+
+
+class RegisterUserView(CreateView):
+    """ New user registration
+    """
+    model = AdvUser
+    template_name = 'main/register_user.html'
+    form_class = RegisterUserForm
+    success_url = reverse_lazy('src.main:register_done')
+
+
+class RegisterDoneView(TemplateView):
+    """ Displays a message about successful registration
+    """
+    template_name = 'main/register_done.html'
