@@ -1,6 +1,7 @@
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core.signing import BadSignature
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from django.views.generic.edit import UpdateView, CreateView
@@ -13,6 +14,7 @@ from django.contrib.auth.decorators import login_required
 from src.main.forms import ChangeUserInfoForm
 from src.main.models import AdvUser
 from .forms import RegisterUserForm
+from .services import signer
 
 
 def index(request):
@@ -72,7 +74,7 @@ class ChangeUserInfoView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
 class MarketplacePasswordChangeView(SuccessMessageMixin, LoginRequiredMixin, PasswordChangeView):
     """ Change user password class
     """
-    template_name = 'main/password_change'
+    template_name = 'main/password_change.html'
     success_url = reverse_lazy('src.main:profile')
     success_message = 'Пароль успешно изменен'
 
@@ -90,3 +92,21 @@ class RegisterDoneView(TemplateView):
     """ Displays a message about successful registration
     """
     template_name = 'main/register_done.html'
+
+
+def user_activate(request, sign):
+    """ User activation
+    """
+    try:
+        username = signer.unsign(sign)
+    except BadSignature:
+        return render(request, 'main/bad_signature.html')
+    user = get_object_or_404(AdvUser, username=username)
+    if user.is_activated:
+        template = 'main/user_is_activated.html'
+    else:
+        template = 'main/activation_done.html'
+        user.is_active = True
+        user.is_activated = True
+        user.save()
+    return render(request, template)

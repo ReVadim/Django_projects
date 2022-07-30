@@ -1,0 +1,9 @@
+Dear user {{ user.username }}!
+
+You have registered on the classifieds site.
+You need to perform activation to confirm your identity.
+To do this, please follow the link:
+
+{{ host }}{% url 'src.main:register_activate' sign=sign %}
+
+See you on the website!
