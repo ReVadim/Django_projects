@@ -29,7 +29,7 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{% url 'src.main:logout' %}">Выйти</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Удалить</a>
+                            <a class="dropdown-item" href="{% url 'src.main:profile_delete' %}">Удалить</a>
                         </div>
                     </li>
                     {% else %}

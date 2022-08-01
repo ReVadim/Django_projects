@@ -6,7 +6,8 @@ from .views import (
     MarketplaceLoginView,
     profile, MarketplaceLogoutView,
     RegisterDoneView, RegisterUserView,
-    ChangeUserInfoView, MarketplacePasswordChangeView, user_activate,
+    ChangeUserInfoView, MarketplacePasswordChangeView,
+    user_activate, DeleteUserView,
 )
 
 
@@ -18,6 +19,7 @@ urlpatterns = [
     path('accounts/login/', MarketplaceLoginView.as_view(), name='login'),
     path('accounts/logout/', MarketplaceLogoutView.as_view(), name='logout'),
     path('accounts/password/change', MarketplacePasswordChangeView.as_view(), name='password_change'),
+    path('accounts/profile/delete/', DeleteUserView.as_view(), name='profile_delete'),
     path('accounts/profile/change/', ChangeUserInfoView.as_view(), name='profile_change'),
     path('accounts/profile/', profile, name='profile'),
     path('<str:page>/', other_page, name='other'),
