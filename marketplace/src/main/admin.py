@@ -15,6 +15,8 @@ def send_activation_notifications(modeladmin, request, queryset):
 
 
 class NonActivatedFilter(admin.SimpleListFilter):
+    """ Checking the user who did not perform the activation
+    """
     title = 'Прошли активацию?'
     parameter_name = 'actState'
 
@@ -36,3 +38,17 @@ class NonActivatedFilter(admin.SimpleListFilter):
             d_time = datetime.date.today() - datetime.timedelta(weeks=1)
             return queryset.filter(is_acivated=False, is_activated=False, date_joined__data__lt=d_time)
 
+
+class AdvUserAdmin(admin.ModelAdmin):
+    """ Supportive class
+    """
+    list_display = ('__str__', 'is_activated', 'date_joined')
+    search_fields = ('username', 'email', 'first_name', 'last_name')
+    list_filter = (NonActivatedFilter,)
+    fields = ('password', ('username', 'email'), ('first_name', 'last_name'), ('is_active', 'is_activated'),
+              'groups', 'user_permissions', ('last_login', 'date_joined'))
+    readonly_fields = ('last_login', 'date_joined')
+    actions = (send_activation_notifications,)
+
+
+admin.site.register(AdvUser, AdvUserAdmin)
