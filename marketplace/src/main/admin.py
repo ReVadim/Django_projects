@@ -1,7 +1,7 @@
 from django.contrib import admin
 import datetime
 
-from .models import AdvUser
+from .models import AdvUser, SuperRubric
 from .services import send_activation_notification
 
 
@@ -51,4 +51,18 @@ class AdvUserAdmin(admin.ModelAdmin):
     actions = (send_activation_notifications,)
 
 
+class SuperRubricInline(admin.TabularInline):
+    """ Built-in rubric editor
+    """
+    model = SuperRubric
+
+
+class SuperRubricAdmin(admin.ModelAdmin):
+    """ Main rubric editor
+    """
+    exclude = ('super_rubric',)
+    inlines = (SuperRubricInline,)
+
+
 admin.site.register(AdvUser, AdvUserAdmin)
+admin.site.register(SuperRubric, SuperRubricAdmin)

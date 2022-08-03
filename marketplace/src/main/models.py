@@ -22,17 +22,17 @@ class Rubric(models.Model):
         'SuperRubric', on_delete=models.PROTECT, null=True, blank=True, verbose_name='Надрубрика')
 
 
-class SuperRubricManager(models.Manager):
-    """ Data manager
+class RubricDataManager(models.Manager):
+    """ Rubric data manager
     """
     def get_queryset(self):
-        return super().get_queryset().filter(super_rubric__is_null=True)
+        return super().get_queryset().filter(super_rubric__isnull=True)
 
 
 class SuperRubric(Rubric):
     """ Class SuperRubric
     """
-    objects = SuperRubricManager()
+    objects = RubricDataManager()
 
     def __str__(self):
         return self.name
@@ -42,3 +42,18 @@ class SuperRubric(Rubric):
         ordering = ('sequence_number', 'name')
         verbose_name = 'Надрубрика'
         verbose_name_plural = 'Надрубрики'
+
+
+class SubRubric(Rubric):
+    """ Class SubRubric
+    """
+    objects = RubricDataManager()
+
+    def __str__(self):
+        return f'{self.super_rubric.name} - {self.name}'
+
+    class Meta:
+        proxy = True
+        ordering = ('super_rubric__sequence_number', 'super_rubric__name', 'sequence_number', 'name')
+        verbose_name = 'Подрубрика'
+        verbose_name_plural = 'Подрубрики'
