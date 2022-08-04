@@ -44,6 +44,8 @@ SYSTEM_APPS = [
 
 PROJECT_APPS = [
     'src.main.apps.MainConfig',
+    'easy_thumbnails',
+    'django_cleanup',
     'bootstrap4',
 ]
 
@@ -146,3 +148,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'main.AdvUser'
 
 EMAIL_PORT = 1025
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'default': {
+            'size': (96, 96),
+            'crop': 'scale',
+        },
+    },
+}
+
+THUMBNAIL_BASEDIR = 'thumbnails'
