@@ -40,7 +40,9 @@
 | [_bboard_](https://github.com/ReVadim/Admission_test_projects/tree/main/marketplace) | Доска объявлений |
 | [_retail_store_](https://github.com/ReVadim/Admission_test_projects/tree/main/retail_store) | API для магазина |
 | [_reviews_](https://github.com/ReVadim/Admission_test_projects/tree/main/reviews) |система опроса пользователей|
-| [_simple_blog_](https://github.com/ReVadim/Admission_test_projects/tree/main/simple_blog) | простой блог with Celery |
+| [_simple_blog_](https://github.com/ReVadim/Admission_test_projects/tree/main/simple_blog) | простой блог + Celery |
+| [_blog + Comments_](https://github.com/ReVadim/spa_project) | Блог с комментариями и поиском + Tag |
+| [_quadratic_equation_](https://github.com/ReVadim/The_quadratic) | Решебник квадратных уравнений + Heroku |
 | [_web_billing_](https://github.com/ReVadim/Admission_test_projects/tree/main/web_billing) | банковские транзакции |
 | [_weather_app_](https://meteostation-v1.herokuapp.com) | Heroku Deploy with OpenWeatherMap API |
 
