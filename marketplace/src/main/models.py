@@ -9,6 +9,11 @@ class AdvUser(AbstractUser):
     is_activated = models.BooleanField(default=True, db_index=True, verbose_name="Прошел активацию?")
     send_message = models.BooleanField(default=True, verbose_name="Слать сообщения о новых комментариях?")
 
+    def delete(self, *args, **kwargs):
+        for adv in self.advertisement_set.all():
+            adv.delete()
+        super().delete(*args, **kwargs)
+
     class Meta(AbstractUser.Meta):
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
@@ -23,17 +28,24 @@ class Rubric(models.Model):
         'SuperRubric', on_delete=models.PROTECT, null=True, blank=True, verbose_name='Надрубрика')
 
 
-class RubricDataManager(models.Manager):
-    """ Rubric data manager
+class SuperRubricDataManager(models.Manager):
+    """ SuperRubric data manager
     """
     def get_queryset(self):
         return super().get_queryset().filter(super_rubric__isnull=True)
 
 
+class SubRubricDataManager(models.Manager):
+    """ SubRubric data manager
+    """
+    def get_queryset(self):
+        return super().get_queryset().filter(super_rubric__isnull=False)
+
+
 class SuperRubric(Rubric):
     """ Class SuperRubric
     """
-    objects = RubricDataManager()
+    objects = SuperRubricDataManager()
 
     def __str__(self):
         return self.name
@@ -48,7 +60,7 @@ class SuperRubric(Rubric):
 class SubRubric(Rubric):
     """ Class SubRubric
     """
-    objects = RubricDataManager()
+    objects = SubRubricDataManager()
 
     def __str__(self):
         return f'{self.super_rubric.name} - {self.name}'

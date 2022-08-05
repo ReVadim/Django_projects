@@ -3,7 +3,9 @@ from django.contrib.auth import logout
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.core.paginator import Paginator
 from django.core.signing import BadSignature
+from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
@@ -13,8 +15,8 @@ import django.template
 from django.template.loader import get_template
 from django.contrib.auth.decorators import login_required
 
-from src.main.forms import ChangeUserInfoForm
-from src.main.models import AdvUser
+from src.main.forms import ChangeUserInfoForm, SearchForm
+from src.main.models import AdvUser, SubRubric, Advertisement
 from .forms import RegisterUserForm
 from .services import signer
 
@@ -137,4 +139,23 @@ class DeleteUserView(LoginRequiredMixin, DeleteView):
 
 
 def by_rubric(request, pk):
-    pass
+    """ View that outputs data about categories
+    """
+    rubric = get_object_or_404(SubRubric, pk=pk)
+    advertisements = Advertisement.objects.filter(is_active=True, rubric=pk)
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+        q = Q(title__icontains=keyword) | Q(content__icontains=keyword)
+        advertisements = advertisements.filter(q)
+    else:
+        keyword = ''
+    form = SearchForm(initial={'keyword': keyword})
+    paginator = Paginator(advertisements, 2)
+    if 'page' in request.GET:
+        page_num = request.GET['page']
+    else:
+        page_num = 1
+    page = paginator.get_page(page_num)
+    context = {'rubric': rubric, 'page': page, 'advertisements': page.object_list, 'form': form}
+
+    return render(request, 'main/by_rubric.html', context)

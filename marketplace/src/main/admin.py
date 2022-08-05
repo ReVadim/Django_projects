@@ -1,7 +1,7 @@
 from django.contrib import admin
 import datetime
 
-from .models import AdvUser, SuperRubric
+from .models import AdvUser, SuperRubric, AdditionalImage, Advertisement
 from .services import send_activation_notification
 
 
@@ -64,5 +64,20 @@ class SuperRubricAdmin(admin.ModelAdmin):
     inlines = (SuperRubricInline,)
 
 
+class AdditionalImageInline(admin.TabularInline):
+    """ Editor of additional illustrations
+    """
+    model = AdditionalImage
+
+
+class AdvertisementAdmin(admin.ModelAdmin):
+    """ Main Advertisement Editor
+    """
+    list_display = ('rubric', 'title', 'author', 'content', 'created_at')
+    fields = (('rubric', 'author'), 'title', 'content', 'price', 'contacts', 'image', 'is_active')
+    inlines = (AdditionalImageInline,)
+
+
 admin.site.register(AdvUser, AdvUserAdmin)
 admin.site.register(SuperRubric, SuperRubricAdmin)
+admin.site.register(Advertisement, AdvertisementAdmin)
