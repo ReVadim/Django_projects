@@ -1,5 +1,34 @@
 {% extends 'layout/base.html' %}
 
+{% load thumbnail %}
+{% load static %}
+{% load bootstrap4 %}
+
 {% block content %}
 <h2>Последние 10 объявлений</h2>
+{% if advs %}
+{% for adv in advs %}
+<ul class="list-unstyled">
+    <li class="media my-5 p-3 border">
+        {% url 'src.main:detail' rubric_pk=rubric.pk pk=adv.pk as url %}
+        <a href="{{ url }}{{ all }}">
+        {% if adv.image %}
+        <img src="{% thumbnail adv.image 'default' %}" class="mr-3">
+        {% else %}
+        <img src="{% static 'main/img/empty.jpg' %}">
+            <p>{{ adv.title }}</p>
+        {% endif %}
+        </a>
+        <div class="media-body">
+            <h3><a href="{{ url }}{{ all }}">
+                {{ adv.title }}
+            </a></h3>
+            <div>{{ adv.content }}</div>
+            <p class="text-right font-weight-bold">{{ adv.price }} руб.</p>
+            <p class="text-right font-italic">{{ adv.created_at }}</p>
+        </div>
+    </li>
+    {% endfor %}
+</ul>=
+{% endif %}
 {% endblock content %}

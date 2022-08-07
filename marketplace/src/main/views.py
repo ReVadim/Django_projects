@@ -24,7 +24,9 @@ from .services import signer
 def index(request):
     """ display main page
     """
-    return render(request, 'main/index.html')
+    advertisements = Advertisement.objects.filter(is_active=True)[:10]
+    context = {'advs': advertisements}
+    return render(request, 'main/index.html', context)
 
 
 def other_page(request, page):
@@ -159,3 +161,11 @@ def by_rubric(request, pk):
     context = {'rubric': rubric, 'page': page, 'advertisements': page.object_list, 'form': form}
 
     return render(request, 'main/by_rubric.html', context)
+
+
+def detail(request, rubric_pk, pk):
+    adv = get_object_or_404(Advertisement, pk=pk)
+    images = adv.additionalimage_set.all()
+    context = {'adv': adv, 'images': images}
+
+    return render(request, 'main/detail.html', context)
