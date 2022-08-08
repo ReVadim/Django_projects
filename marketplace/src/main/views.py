@@ -9,13 +9,13 @@ from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, Http404
 import django.template
 from django.template.loader import get_template
 from django.contrib.auth.decorators import login_required
 
-from src.main.forms import ChangeUserInfoForm, SearchForm
+from src.main.forms import ChangeUserInfoForm, SearchForm, AdvForm, AdvertisementsFormSet
 from src.main.models import AdvUser, SubRubric, Advertisement
 from .forms import RegisterUserForm
 from .services import signer
@@ -55,7 +55,9 @@ class MarketplaceLogoutView(LoginRequiredMixin, LogoutView):
 def profile(request):
     """ User profile page
     """
-    return render(request, 'main/profile.html')
+    advertisements = Advertisement.objects.filter(author=request.user.pk)
+    context = {'advertisements': advertisements}
+    return render(request, 'main/profile.html', context)
 
 
 class ChangeUserInfoView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
@@ -164,8 +166,40 @@ def by_rubric(request, pk):
 
 
 def detail(request, rubric_pk, pk):
+    """ Detailed information about the images in the selected ad
+    """
     adv = get_object_or_404(Advertisement, pk=pk)
     images = adv.additionalimage_set.all()
     context = {'adv': adv, 'images': images}
 
     return render(request, 'main/detail.html', context)
+
+
+@login_required()
+def profile_adv_detail(request, pk):
+    """ Detailed information about user's ads
+    """
+    adv = get_object_or_404(Advertisement, pk=request.user.pk)
+    context = {'adv': adv}
+
+    return render(request, 'main/user_adv_detail.html', context)
+
+
+@login_required()
+def profile_adv_add(request):
+    """ Controller function that adds a new ad
+    """
+    if request.method == 'POST':
+        form = AdvForm(request.POST, request.FILES)
+        if form.is_valid():
+            adv = form.save()
+            formset = AdvertisementsFormSet(request.POST, request.FILES, instance=adv)
+            if formset.is_valid():
+                formset.save()
+                messages.add_message(request, messages.SUCCESS, 'Объявление добавлено')
+                return redirect('src.main:profile')
+    else:
+        form = AdvForm(initial={'author':request.user.pk})
+        formset = AdvertisementsFormSet()
+    context = {'form': form, 'formset': formset}
+    return render(request, 'main/profile_adv_add.html', context)

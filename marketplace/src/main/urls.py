@@ -1,13 +1,12 @@
 from django.urls import path
 
 from .views import (
-    index,
-    other_page,
-    MarketplaceLoginView,
+    index, other_page, MarketplaceLoginView,
     profile, MarketplaceLogoutView,
     RegisterDoneView, RegisterUserView,
     ChangeUserInfoView, MarketplacePasswordChangeView,
     user_activate, DeleteUserView, by_rubric, detail,
+    profile_adv_detail,
 )
 
 
@@ -21,6 +20,7 @@ urlpatterns = [
     path('accounts/password/change', MarketplacePasswordChangeView.as_view(), name='password_change'),
     path('accounts/profile/delete/', DeleteUserView.as_view(), name='profile_delete'),
     path('accounts/profile/change/', ChangeUserInfoView.as_view(), name='profile_change'),
+    path('accounts/profile/<int:pk>/', profile_adv_detail, name='profile_adv_detail'),
     path('accounts/profile/', profile, name='profile'),
     path('<int:rubric_pk>/<int:pk>/', detail, name='detail'),
     path('<int:pk>/', by_rubric, name='by_rubric'),

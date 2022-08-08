@@ -10,4 +10,8 @@
 <p>Здравствуйте!</p>
 {% endif %}
 <h3>Ваши объявления</h3>
+{% for adv in advertisements %}
+{% url 'src.main:detail' rubric_pk=rubric.pk pk=adv.pk as url %}
+<a href="{{ url }}{{ all }}">{{ adv.title }} - {{ adv.content }}</a>
+{% endfor %}
 {% endblock content %}
