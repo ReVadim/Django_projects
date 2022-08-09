@@ -203,3 +203,39 @@ def profile_adv_add(request):
         formset = AdvertisementsFormSet()
     context = {'form': form, 'formset': formset}
     return render(request, 'main/profile_adv_add.html', context)
+
+
+@login_required()
+def profile_adv_change(request, pk):
+    """ Making changes to previously published ads
+    """
+    adv = get_object_or_404(Advertisement, pk=pk)
+    if request.method == 'POST':
+        form = AdvForm(request.POST, request.FILES, instance=adv)
+        if form.is_valid():
+            form.save()
+            formset = AdvertisementsFormSet(request.POST, request.FILES, instance=adv)
+            if formset.is_valid():
+                formset.save()
+                messages.add_message(request, messages.SUCCESS, 'Исправления внесены')
+                return redirect('src.main:profile')
+    else:
+        form = AdvForm(instance=adv)
+        formset = AdvertisementsFormSet(instance=adv)
+    context = {'form': form, 'formset': formset}
+
+    return render(request, 'main/profile_adv_change.html', context)
+
+
+@login_required()
+def profile_adv_delete(request, pk):
+    """ Delete adv
+    """
+    adv = get_object_or_404(Advertisement, pk=pk)
+    if request.method == 'POST':
+        adv.delete()
+        messages.add_message(request, messages.SUCCESS, 'Объявление удалено')
+        return redirect('src.main:profile')
+    else:
+        context = {'adv': adv}
+        return render(request, 'main/profile_adv_delete.html', context)

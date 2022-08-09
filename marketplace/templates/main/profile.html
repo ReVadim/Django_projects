@@ -1,5 +1,8 @@
 {% extends 'layout/base.html' %}
 
+{% load thumbnail %}
+{% load static %}
+
 {% block title %}Профиль пользователя{% endblock title %}
 
 {% block content %}
@@ -9,9 +12,32 @@
 {% else %}
 <p>Здравствуйте!</p>
 {% endif %}
+<p><a href="{% url 'src.main:profile_adv_add' %}">Добавить объявление</a></p>
+{% if advertisements %}
 <h3>Ваши объявления</h3>
-{% for adv in advertisements %}
-{% url 'src.main:detail' rubric_pk=rubric.pk pk=adv.pk as url %}
-<a href="{{ url }}{{ all }}">{{ adv.title }} - {{ adv.content }}</a>
-{% endfor %}
+<ul class="list-unstyled">
+    {% for adv in advertisements %}
+    <li class="media my-5 p-3 border">
+        {% url 'src.main:profile_adv_detail' pk=adv.pk as url %}
+        <a href="{{ url }}{{ all }}">
+            {% if adv.image %}
+            <img class="mr-3" src="{% thumbnail adv.image 'default' %}">
+            {% else %}
+            <img class="mr-3" width="180" src="{% static 'main/img/empty.jpg' %}">
+            {% endif %}
+        </a>
+        <div class="media-body">
+            <h3><a href="{{ url }}{{ all }}">{{ adv.title }}</a></h3>
+            <div>{{ adv.content }}</div>
+            <p class="text-right font-weight-bold">{{ adv.price }} руб.</p>
+            <p class="text-right font-italic">{{ adv.created_at }}</p>
+            <p class="text-right mt-2">
+                <a href="{% url 'src.main:profile_adv_change' pk=adv.pk %}">Исправить</a>
+                <a href="{{ url 'src.main:profile_adv_delete' pk=adv.pk %}">Удалить</a>
+            </p>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
 {% endblock content %}

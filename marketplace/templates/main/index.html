@@ -10,25 +10,23 @@
 {% for adv in advs %}
 <ul class="list-unstyled">
     <li class="media my-5 p-3 border">
-        {% url 'src.main:detail' rubric_pk=rubric.pk pk=adv.pk as url %}
+        {% url 'src.main:detail' rubric_pk=adv.rubric.pk pk=adv.pk as url %}
         <a href="{{ url }}{{ all }}">
         {% if adv.image %}
         <img src="{% thumbnail adv.image 'default' %}" class="mr-3">
         {% else %}
-        <img src="{% static 'main/img/empty.jpg' %}">
+        <img src="{% static 'main/img/empty.jpg' %}" width="180">
             <p>{{ adv.title }}</p>
         {% endif %}
         </a>
         <div class="media-body">
-            <h3><a href="{{ url }}{{ all }}">
-                {{ adv.title }}
-            </a></h3>
+            <h3><a href="{{ url }}{{ all }}">{{ adv.title }}</a></h3>
             <div>{{ adv.content }}</div>
             <p class="text-right font-weight-bold">{{ adv.price }} руб.</p>
             <p class="text-right font-italic">{{ adv.created_at }}</p>
         </div>
     </li>
     {% endfor %}
-</ul>=
+</ul>
 {% endif %}
 {% endblock content %}
