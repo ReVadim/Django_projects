@@ -47,6 +47,8 @@ PROJECT_APPS = [
     'easy_thumbnails',
     'django_cleanup',
     'bootstrap4',
+    'captcha',
+    'src.comments.apps.CommentsConfig',
 ]
 
 INSTALLED_APPS = SYSTEM_APPS + PROJECT_APPS
@@ -159,3 +161,5 @@ THUMBNAIL_ALIASES = {
 }
 
 THUMBNAIL_BASEDIR = 'thumbnails'
+
+CAPTCHA_LENGTH = 6

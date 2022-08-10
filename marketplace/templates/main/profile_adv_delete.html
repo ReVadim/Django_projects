@@ -1,0 +1,15 @@
+{% extends 'layout/base.html' %}
+
+{% load bootstrap4 %}
+
+{% block title %}Удаление объявления{% endblock title %}
+
+{% block content %}
+<h2>Удалить объявление {{ adv.title }}?</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {% buttons submit='Удалить объявление' %}{% endbuttons %}
+</form>
+
+{% endblock content %}

@@ -33,7 +33,7 @@
             <p class="text-right font-italic">{{ adv.created_at }}</p>
             <p class="text-right mt-2">
                 <a href="{% url 'src.main:profile_adv_change' pk=adv.pk %}">Исправить</a>
-                <a href="{{ url 'src.main:profile_adv_delete' pk=adv.pk %}">Удалить</a>
+                <a href="{% url 'src.main:profile_adv_delete' pk=adv.pk %}">Удалить</a>
             </p>
         </div>
     </li>
