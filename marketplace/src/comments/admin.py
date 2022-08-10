@@ -7,10 +7,10 @@ class CommentAdmin(admin.ModelAdmin):
     """ Comments class to display on the admin panel
     """
     model = Comment
-    list_display = ('__str__', 'is_active', 'author', 'created_at', 'content',)
+    list_display = ('__str__', 'is_active', 'author', 'created_at', 'content', 'advertisement',)
     search_fields = ('author', 'is_active', 'created_at',)
-    fields = (('username', 'content'), ('created_at', 'is_active'),)
-    readonly_fields = ('author', 'content')
+    fields = (('author', 'content'), ('advertisement', 'is_active'), 'created_at',)
+    readonly_fields = ('created_at',)
 
 
-admin.site.register(CommentAdmin)
+admin.site.register(Comment, CommentAdmin)
