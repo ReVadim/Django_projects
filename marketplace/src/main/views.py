@@ -18,7 +18,9 @@ from django.contrib.auth.decorators import login_required
 from src.main.forms import ChangeUserInfoForm, SearchForm, AdvForm, AdvertisementsFormSet
 from src.main.models import AdvUser, SubRubric, Advertisement
 from .forms import RegisterUserForm
+from ..comments.forms import UserCommentForm, GuestCommentForm
 from .services import signer
+from ..comments.models import Comment
 
 
 def index(request):
@@ -170,7 +172,23 @@ def detail(request, rubric_pk, pk):
     """
     adv = get_object_or_404(Advertisement, pk=pk)
     images = adv.additionalimage_set.all()
-    context = {'adv': adv, 'images': images}
+    comments = Comment.objects.filter(advertisement=pk, is_active=True)
+    initial = {'advertisement': adv.pk}
+    if request.user.is_authenticated:
+        initial['author'] = request.user.username
+        form_class = UserCommentForm
+    else:
+        form_class = GuestCommentForm
+    form = form_class(initial=initial)
+    if request.method == 'POST':
+        c_form = form_class(request.POST)
+        if c_form.is_valid():
+            c_form.save()
+            messages.add_message(request, messages.SUCCESS, 'Комментарий успешно добавлен')
+        else:
+            form = c_form
+            messages.add_message(request, messages.WARNING, 'Комментарий не добавлен')
+    context = {'adv': adv, 'images': images, 'comments': comments, 'form': form}
 
     return render(request, 'main/detail.html', context)
 
