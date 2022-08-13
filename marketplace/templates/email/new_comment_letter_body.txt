@@ -1,0 +1,8 @@
+Dear user {{ user.username }}!
+
+A new comment to the entry has appeared on the site.
+
+Author - {{ comment.advertisement.author }}.
+Comment - {{ comment.advertisement.content }}
+
+See you on the website!

@@ -24,3 +24,17 @@ def get_timestamp_path(instance, filename):
     """ Generates the names of uploaded files
     """
     return '%s%s' % (datetime.now().timestamp(), splitext(filename)[1])
+
+
+def send_new_comment_notification(comment):
+    """ The function sends notifications about the appearance of new comments
+    """
+    if ALLOWED_HOSTS:
+        host = 'http://' + ALLOWED_HOSTS[0]
+    else:
+        host = 'http://localhost:8000'
+    author = comment.advertisement.author
+    context = {'author': author, 'host': host, 'comment': comment}
+    subject = render_to_string('email/new_comment_letter_subject.txt', context)
+    body_text = render_to_string('email/new_comment_letter_body.txt', context)
+    author.email_user(subject, body_text)
