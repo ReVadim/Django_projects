@@ -36,6 +36,7 @@
 
 | Проект | Описание |
 |---: | --- |
+| [_cats_photoalbum_](https://github.com/ReVadim/CatsWorld) | Многопользовательский фотоальбом |
 | [_educational_portal_](https://github.com/ReVadim/Admission_test_projects/tree/main/educational_portal) | API для библиотеки учебных курсов |
 | [_bboard_](https://github.com/ReVadim/Admission_test_projects/tree/main/marketplace) | Доска объявлений |
 | [_retail_store_](https://github.com/ReVadim/Admission_test_projects/tree/main/retail_store) | API для магазина |
