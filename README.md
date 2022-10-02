@@ -1,5 +1,23 @@
 ## Django_projects
 
+<img align="right" src="https://github.com/ReVadim/Admission_test_projects/blob/main/background_image.png" width="350"/>
+
+Проекты по Python / Django / DRF    
+
+| Проект | Описание |
+|---: | --- |
+| [_cats_photoalbum_](https://github.com/ReVadim/CatsWorld) | Многопользовательский фотоальбом |
+| [_educational_portal_](https://github.com/ReVadim/Admission_test_projects/tree/main/educational_portal) | API для библиотеки учебных курсов |
+| [_bboard_](https://github.com/ReVadim/Admission_test_projects/tree/main/marketplace) | Доска объявлений |
+| [_retail_store_](https://github.com/ReVadim/Admission_test_projects/tree/main/retail_store) | API для магазина |
+| [_reviews_](https://github.com/ReVadim/Admission_test_projects/tree/main/reviews) |система опроса пользователей|
+| [_simple_blog_](https://github.com/ReVadim/Admission_test_projects/tree/main/simple_blog) | простой блог + Celery |
+| [_blog + Comments_](https://github.com/ReVadim/spa_project) | Блог с комментариями и поиском + Tag |
+| [_quadratic_equation_](https://github.com/ReVadim/The_quadratic) | Решебник квадратных уравнений + Heroku |
+| [_web_billing_](https://github.com/ReVadim/Admission_test_projects/tree/main/web_billing) | банковские транзакции |
+| [_weather_app_](https://meteostation-v1.herokuapp.com) | Heroku Deploy with OpenWeatherMap API |
+
+##    
 ### Include:
 <table>
   <tr>
@@ -30,24 +48,6 @@
   </tr>
 </table>
 
-<img align="right" src="https://github.com/ReVadim/Admission_test_projects/blob/main/background_image.png" width="300"/>
-
-Тестовые задания по Python / Django    
-
-| Проект | Описание |
-|---: | --- |
-| [_cats_photoalbum_](https://github.com/ReVadim/CatsWorld) | Многопользовательский фотоальбом |
-| [_educational_portal_](https://github.com/ReVadim/Admission_test_projects/tree/main/educational_portal) | API для библиотеки учебных курсов |
-| [_bboard_](https://github.com/ReVadim/Admission_test_projects/tree/main/marketplace) | Доска объявлений |
-| [_retail_store_](https://github.com/ReVadim/Admission_test_projects/tree/main/retail_store) | API для магазина |
-| [_reviews_](https://github.com/ReVadim/Admission_test_projects/tree/main/reviews) |система опроса пользователей|
-| [_simple_blog_](https://github.com/ReVadim/Admission_test_projects/tree/main/simple_blog) | простой блог + Celery |
-| [_blog + Comments_](https://github.com/ReVadim/spa_project) | Блог с комментариями и поиском + Tag |
-| [_quadratic_equation_](https://github.com/ReVadim/The_quadratic) | Решебник квадратных уравнений + Heroku |
-| [_web_billing_](https://github.com/ReVadim/Admission_test_projects/tree/main/web_billing) | банковские транзакции |
-| [_weather_app_](https://meteostation-v1.herokuapp.com) | Heroku Deploy with OpenWeatherMap API |
-
-##    
 
 ![](https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=revadim&theme=nord_bright) <br>
 ![](https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=revadim&theme=nord_bright) 
