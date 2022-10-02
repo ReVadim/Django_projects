@@ -1,6 +1,6 @@
 ## Django_projects
 
-<img align="right" src="https://github.com/ReVadim/Admission_test_projects/blob/main/background_image.png" width="350"/>
+<img align="right" src="https://github.com/ReVadim/Admission_test_projects/blob/main/background_image.png" width="300"/>
 
 Проекты по Python / Django / DRF    
 
