@@ -48,7 +48,7 @@ class MarketplaceLoginView(LoginView):
 
 
 class MarketplaceLogoutView(LoginRequiredMixin, LogoutView):
-    """ Standartd logout view
+    """ Standard logout view
     """
     template_name = 'main/logout.html'
 
