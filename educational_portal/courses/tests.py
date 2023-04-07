@@ -1,6 +1,6 @@
 from django.test import TestCase
 from main.models import User
-from .models import Materials, Course, CourseComment
+from .models import Materials, Course, CourseComment, CourseAssessment
 
 
 class CourseTestCase(TestCase):
@@ -45,6 +45,7 @@ class CourseTestCase(TestCase):
 
 
 class CommentTestCase(TestCase):
+    """ Testing Course comment model """
     def create_user(self):
         self.user = User.objects.create(username='Admin', is_active=True)
 
@@ -61,3 +62,38 @@ class CommentTestCase(TestCase):
     def test_comment_text(self):
         text = self.comment.comment
         self.assertEqual(text, 'comment_text')
+
+
+class CourseAssessmentTestCase(TestCase):
+    """ Testing Course Assessment """
+    def create_user(self):
+        self.user = User.objects.create(username='Admin', is_active=True)
+
+    def create_course(self):
+        course_1 = Course.objects.create(name='Course_1')
+        course_2 = Course.objects.create(name='Course_2', url='test_url')
+        self.course_a = course_1
+        self.course_b = course_2
+
+    def create_assessments(self):
+        self.assessment_1 = CourseAssessment.objects.create(user=self.user, course=self.course_a, assessment=1)
+        self.assessment_5 = CourseAssessment.objects.create(user=self.user, course=self.course_b, assessment=5)
+
+    def setUp(self):
+        self.create_user()
+        self.create_course()
+        self.create_assessments()
+
+    def test_assessments_count(self):
+        qs = CourseAssessment.objects.all()
+        self.assertEqual(qs.count(), 2)
+
+    def test_course_assessment_value(self):
+        assessment_1 = CourseAssessment.objects.get(course=self.course_a)
+        assessment_5 = CourseAssessment.objects.get(course=self.course_b)
+        self.assertEqual(assessment_1.assessment, 1)
+        self.assertEqual(assessment_5.assessment, 5)
+
+    def test_course_assessor(self):
+        user = CourseAssessment.objects.get(course=self.course_a).user
+        self.assertEqual(user, self.user)
